@@ -13,6 +13,14 @@ import com.yueguang.model.Film;
 public class BuyfilmplanManager {
 	BaseDao baseDao;
 
+	public BaseDao getBaseDao() {
+		return baseDao;
+	}
+
+	public void setBaseDao(BaseDao baseDao) {
+		this.baseDao = baseDao;
+	}
+
 	// 查找未处理的电影收购计划
 	public List<Buyfilmplan> getUncheckedBuyfilmplans() {
 		HashMap<String, String> condition = new HashMap<String, String>();
