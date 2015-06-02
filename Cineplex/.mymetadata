@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-module
+  type="WEB"
+  name="Cineplex"
+  id="myeclipse.1426150270709"
+  context-root="/Cineplex"
+  j2ee-spec="5.0"
+  archive="Cineplex.war">
+  <attributes>
+    <attribute name="webrootdir" value="WebRoot" />
+  </attributes>
+</project-module>
+

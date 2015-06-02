@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+   <beans xmlns="http://www.springframework.org/schema/beans"  
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"  
+           xsi:schemaLocation="http://www.springframework.org/schema/beans  
+               http://www.springframework.org/schema/beans/spring-beans.xsd">  
+     <!-- spring容器 就是负责创建、管理、维护Bean 并且能够依赖注入到相应组件上 -->  
+     <!-- 封装的底层hibernate与数据的操作 -->
+     <bean id="baseDao" class="com.yueguang.daoImpl.BaseDaoImpl">  
+         <property name="sessionFactory" ref="localSessionFactoryBean">  
+        </property> 
+     </bean>
+     <!-- 配置 DAObean -->
+     <bean id="staffDaoImpl" class="com.yueguang.daoImpl.StaffDaoImpl">  
+         <property name="baseDao" ref="baseDao">  
+   		 </property>  
+    </bean>  
+      <bean id="memberLevelDaoImpl" class="com.yueguang.daoImpl.MemberLevelDaoImpl">  
+         <property name="baseDaoImpl" ref="baseDao">  
+   		 </property>  
+     </bean>  
+      <bean id="memberDaoImpl" class="com.yueguang.daoImpl.MemberDaoImpl">  
+         <property name="baseDao" ref="baseDao">  
+   		 </property>  
+     </bean>  
+      <bean id="memberRechargeDaoImpl" class="com.yueguang.daoImpl.MemberRechargeDaoImpl">  
+         <property name="baseDao" ref="baseDao">  
+   		 </property>  
+     </bean>  
+     
+      <bean id="memberDuesDaoImpl" class="com.yueguang.daoImpl.MemberDuesDaoImpl">  
+         <property name="baseDao" ref="baseDao">  
+   		 </property>  
+     </bean>  
+      <bean id="filmDaoImpl" class="com.yueguang.daoImpl.FilmDaoImpl">  
+         <property name="baseDao" ref="baseDao">  
+   		 </property>  
+     </bean>  
+       <bean id="vedioHallDaoImpl" class="com.yueguang.daoImpl.VedioHallDaoImpl">  
+         <property name="baseDao" ref="baseDao">  
+   		 </property>  
+     </bean>  
+     <bean id="planDaoImpl" class="com.yueguang.daoImpl.PlanDaoImpl">  
+         <property name="baseDao" ref="baseDao">  
+   		 </property>  
+     </bean>
+      <bean id="ticketDaoImpl" class="com.yueguang.daoImpl.TicketDaoImpl">  
+         <property name="baseDao" ref="baseDao">  
+   		 </property>  
+     </bean>
+     <bean id="questionDaoImpl" class="com.yueguang.daoImpl.QuestionDaoImpl">  
+         <property name="baseDao" ref="baseDao">  
+   		 </property>  
+     </bean>
+     <bean id="questiontoPlanDaoImpl" class="com.yueguang.daoImpl.QuestiontoPlanDaoImpl">  
+         <property name="baseDao" ref="baseDao">  
+   		 </property>  
+     </bean>
+     <bean id="memberReplyDaoImpl" class="com.yueguang.daoImpl.MemberReplyDaoImpl">  
+         <property name="baseDao" ref="baseDao">  
+   		 </property>  
+     </bean>
+     <bean id="managerDaoImpl" class="com.yueguang.daoImpl.ManagerDaoImpl">  
+         <property name="baseDao" ref="baseDao">  
+   		 </property>  
+     </bean>
+     <bean id="cinemaStatisticDaoImpl" class="com.yueguang.daoImpl.CinemaStatisticDaoImpl">  
+         <property name="baseDao" ref="baseDao">  
+   		 </property>  
+     </bean>
+          <bean id="memberStatisticDaoImpl" class="com.yueguang.daoImpl.MemberStatisticDaoImpl">  
+         <property name="baseDao" ref="baseDao">  
+   		 </property>  
+     </bean>
+    <!-- 配置 servicebean-->
+    <bean  id="staffManager" class="com.yueguang.service.StaffManager">
+         <property name="staffDaoImpl" ref="staffDaoImpl">  
+   		 </property>  
+    </bean>
+     <bean  id="memberManager" class="com.yueguang.service.MemberManager">
+         <property name="memberDaoImpl" ref="memberDaoImpl"> 
+   		 </property>  
+   		 <property name="memberDuesDao" ref="memberDuesDaoImpl"/> 
+         <property name="memberRechargeDao" ref="memberRechargeDaoImpl"/> 
+         <property name="ticketDao" ref="ticketDaoImpl"/> 
+         <property name="memberLevelDao" ref="memberLevelDaoImpl"/> 
+         <property name="integralRate"  value="0.1"/>
+    </bean>
+    <bean  id="ticketManager" class="com.yueguang.service.TicketManager">
+       <property name="ticketDao" ref="ticketDaoImpl"/> 
+       <property name="vedioHallDao" ref="vedioHallDaoImpl"/> 
+    </bean>
+    <bean  id="planManager" class="com.yueguang.service.PlanManager">
+   		 <property name="planDao" ref="planDaoImpl"/> 
+    </bean>
+    <bean  id="filmManager" class="com.yueguang.service.FilmManager">
+   		 <property name="filmDao" ref="filmDaoImpl"/> 
+    </bean>
+    <bean  id="managerManager" class="com.yueguang.service.ManagerManager">
+   		 <property name="managerDao" ref="managerDaoImpl"/> 
+    </bean>
+     <bean  id="payManager" class="com.yueguang.service.PayManager">
+   		 <property name="memberDao" ref="memberDaoImpl"/> 
+   		 <property name="memberRechargeDao" ref="memberRechargeDaoImpl"/> 
+    </bean>
+    <bean  id="activityManager" class="com.yueguang.service.ActivityManager">
+   		 <property name="questionDao" ref="questionDaoImpl"/> 
+   		 <property name="questiontoPlanDao" ref="questiontoPlanDaoImpl"/> 
+   		 <property name="memberReplyDao" ref="memberReplyDaoImpl"/> 
+    </bean>
+    <bean  id="statisticManager" class="com.yueguang.service.StatisticManager">
+   		 <property name="cinemaStatisticDao" ref="cinemaStatisticDaoImpl"/> 
+   		 <property name="memberStatitsticDao" ref="memberStatisticDaoImpl"/> 
+    </bean>
+    
+    <bean  id="ceoManager" class="com.yueguang.service.CEOManager">
+   		 <property name="baseDao" ref="baseDao"/> 
+    </bean>
+    <bean  id="accendantManager" class="com.yueguang.service.AccendantManager">
+   		 <property name="baseDao" ref="baseDao"/> 
+    </bean>
+    <bean  id="buyfilmplanManager" class="com.yueguang.service.BuyfilmplanManager">
+   		 <property name="baseDao" ref="baseDao"/> 
+    </bean>
+</beans>  

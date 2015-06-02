@@ -1,0 +1,180 @@
+<!DOCTYPE hibernate-mapping PUBLIC   
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"  
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">  
+<hibernate-mapping package="com.yueguang.model">  
+    <class name="Staff" table="staff"  >  
+        <id name="staffid"  column="staffid"/>  
+        <property name="password" type="string"  column="password" />  
+        <property name="name" type="string"   column="name" />  
+    </class>  
+     <class name="MemberLevel" table="memberlevel"  >  
+        <id name="level" type="int" column="level"/>  
+        <property name="discount" type="float"  column="discount" /> 
+        <property name="charge" type="float"  column="charge" />  
+    </class>  
+    <class name="Member" table="member">
+        <id  name="memberid" type="string" column="memberid" />
+        <property name="password" type="string"  column="password" />  
+        <property name="bankcard" type="string"  column="bankcard" />  
+        <property name="paypassword" type="string"  column="paypassword" />  
+        <property name="balance" type="double"  column="balance" />  
+        <many-to-one name="memberLevel" column ="level" lazy="false"  fetch = "join"/>  
+        <property name="validity" type="timestamp"  column="validity" />  
+        <property name="name" type="string"  column="name" />  
+        <property name="sex" type="string"  column="sex" />  
+        <property name="residence" type="string"  column="residence" />  
+        <property name="birthday" type="date"  column="birthday" />  
+        <property name="integral" type="int"  column="integral" />
+        <property name="registertime" type="date"  column="registertime" />    
+    </class>
+    <class name="MemberRecharge" table="memberrecharge">
+        <id  name="rechargeid"  type="int"  column="rechargeid" >
+           <generator class="identity" />
+        </id>
+       <many-to-one name="member" column ="memberid"/>  
+       <property name="time" type="timestamp" column="time"/>
+       <property name="detail" type="string" column="detail" />
+    </class>
+    
+    <class name="MemberDues" table="memberdues">
+        <id  name="duesid"  type="int"  column="duesid" >
+           <generator class="identity" />
+        </id>
+       <many-to-one name="member" column ="memberid"/>  
+       <property name="time" type="timestamp" column="time"/>
+       <property name="detail" type="string" column="detail" />
+    </class>
+	<class name="Film" table="film">
+       <id  name="filmid"  type="int"  column="filmid" >
+           <generator class="identity" />
+       </id>
+       <property name="name" type="string" column="name" />
+       <property name="introduction" type="string" column="introduction" />
+       <property name="picture" type="string" column="picture" />
+       <property name="ontime" type="timestamp" column="ontime"/>
+       <property name="offtime" type="timestamp" column="offtime"/>
+       <property name="price" type="float" column="price"/>
+    </class>
+	<class name="VedioHall" table="vediohall">
+       <id  name="hallname"  type="string"  column="hallname" />
+       <property name="seatcount" type="int" column="seatcount" />
+       <property name="planfigure" type="string" column="planfigure" />
+    </class>
+    <class name="Plan" table="plan">
+       <id  name="planid"  type="int"  column="planid" >
+           <generator class="identity" />
+       </id>
+       <property name="status" type="string" column="status" />
+       <many-to-one name="staff" column="staffid" />
+       <many-to-one name="film" column="filmid" lazy="false"  fetch = "join"/>
+       <many-to-one name="vedioHall" column="hallname" lazy="false"  fetch = "join"/>
+       <property name="starttime" type="timestamp" column="starttime" />
+       <property name="endtime" type="timestamp" column="endtime" />
+       <property name="price" type="float" column="price" />
+     </class>
+
+     <class name="Ticket" table="ticket">
+       <id  name="ticketid"  type="int"  column="ticketid" >
+           <generator class="identity" />
+       </id>
+       <many-to-one name="member" column="memberid" lazy="false" fetch = "join"/>
+       <many-to-one name="plan" column="planid" lazy="false" fetch = "join" />
+       <property name="seat" type="int" column="seat" />
+       <property name="payType" type="string" column="paytype" />
+       <property name="buytime" type="timestamp" column="buytime" />
+    </class>
+	 <class name="Question" table="question">
+       <id  name="questionid"  type="int"  column="questionid" >
+           <generator class="identity" />
+       </id>
+       <property name="content" type="string" column="content" />
+       <property name="options" type="string" column="options" />
+    </class>
+     <class name="QuestiontoPlan" table="questiontoplan">
+       <id  name="qtpid"  type="int"  column="qtpid" >
+           <generator class="identity" />
+       </id>
+       <many-to-one name="plan" column="planid" lazy="false"  fetch = "join"/>
+       <many-to-one name="question" column="questionid" lazy="false"  fetch = "join"/>
+       <property name="statistic" type="string" column="statistic"/>
+       <property name="status" type="string" column="status"/>
+    </class>
+	<class name="MemberReply" table="memberreply">
+       <id  name="replyid"  type="int"  column="replyid" ><generator class="identity" />
+       </id>
+       <many-to-one name="questiontoPlan" column="qtpid" />
+       <many-to-one name="ticket" column="ticketid" lazy="false"  fetch = "join" />
+       <property name="choice" type="string" column="choice"/>
+    </class>
+	<class name="Manager" table="manager">
+       <id  name="managerid"  type="string"  column="managerid" ></id>
+       <property name="password" type="string" column="password"/>
+       <property name="name" type="string" column="name"/>
+    </class>
+	<class name="MemberStatistic" table="memberstatistic">
+       <id  name="time"  type="timestamp"  column="time" ></id>
+       <property name="agestatistic" type="string" column="agestatistic"/>
+       <property name="sexstatistic" type="string" column="sexstatistic"/>
+       <property name="residencestatistic" type="string" column="residencestatistic"/>
+       <property name="validitystatistic" type="string" column="validitystatistic"/>
+    </class>
+	<class name="CinemaStatistic" table="cinemastatistic">
+       <id  name="time"  type="timestamp"  column="time" > </id>
+       <property name="peoplecount" type="string" column="peoplecount"/>
+       <property name="buyticketstatistic" type="string" column="buyticketstatistic"/>
+    </class>
+    
+    <class name="CEO" table="ceo">
+       <id  name="ceoid"  type="string"  column="ceoid" ></id>
+       <property name="password" type="string" column="password"/>
+       <property name="name" type="string" column="name"/>
+    </class>
+     <class name="Accendant" table="accendant">
+       <id  name="accendantid"  type="string"  column="accendantid" ></id>
+       <property name="password" type="string" column="password"/>
+       <property name="name" type="string" column="name"/>
+    </class>
+    
+     <class name="Filmtype" table="filmtype"  >  
+      <id name="typeid"  type="int" column="typeid">
+        <generator class="increment"/>
+      </id>
+      <property name="name" type="string"  column="name" /> 
+     </class>
+     
+     <class name="FilmtypetoFilm" table="filmtypetofilm"  >  
+       <id name="id"  type="int" column="id">
+         <generator class="increment"/>
+       </id>
+       <many-to-one name="film" column="filmid" lazy="false"  fetch = "join" />
+       <many-to-one name="filmtype" column="filmtypeid" lazy="false"  fetch = "join" />
+     </class>
+     
+      <class name="Promotion" table="promotion"  >  
+       <id name="id"  type="int" column="id">
+         <generator class="increment"/>
+       </id>
+       <property name="starttime" type="timestamp"  column="starttime" />
+       <property name="endtime" type="timestamp"  column="endtime" />  
+       <property name="discount" type="float"  column="discount" /> 
+       <property name="integral" type="float"  column="integral" /> 
+       <property name="reason" type="string"  column="reason" /> 
+     </class>
+     
+     <class name="Buyfilmplan" table="buyfilmplan"  >  
+       <id name="id"  type="int" column="id">
+         <generator class="increment"/>
+       </id>
+       <property name="status" type="string"  column="status" />
+       <property name="filmname" type="string"  column="filmname" />  
+       <property name="introduction" type="string"  column="introduction" /> 
+       <property name="reason" type="string"  column="reason" /> 
+     </class>
+     <class name="Filmhot" table="filmhot"  >  
+       <id name="id"  type="int" column="id">
+         <generator class="increment"/>
+       </id>
+       <many-to-one name="film" column="filmid" lazy="false"  fetch = "join" />  
+       <property name="hot" type="int"  column="hot" /> 
+     </class>
+</hibernate-mapping>  

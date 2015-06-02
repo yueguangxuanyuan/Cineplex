@@ -1,0 +1,447 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<!DOCTYPE struts PUBLIC  
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"  
+    "http://struts.apache.org/dtds/struts-2.0.dtd">  
+<struts>  
+    <constant name="struts.i18n.encoding" value="utf-8" />  
+    
+    <package name="struts2" extends="struts-default"> 
+      <global-results>  
+          <result name="login">/Login.jsp</result>  
+          <result name="input">/Error.jsp</result>  
+     </global-results>  
+        <action name="LoginAction" class="com.yueguang.actions.LoginAction">
+            <result name="success">Login.jsp</result>  
+             <result name="member">
+                   Member.jsp
+            </result>  
+        <!--
+            <result name="member" type="redirectAction">
+                   <param name="actionName">MemberAction</param> 
+                   <param name="memberid">${account}</param>  
+            </result> 
+         --> 
+            <result name="staff">
+                   Staff.jsp 
+            </result>  
+            <result name="manager">
+               Manager.jsp
+             </result>
+            <result name="fail">Login.jsp</result>  
+        </action>  
+         <action name="MemberInfoAction" class="com.yueguang.actions.MemberInfoAction">
+            <result name="success">MemberInfo.jsp</result>  
+        </action>  
+        <action name="ComsumptionHistoryAction" class="com.yueguang.actions.ComsumptionHistoryAction">
+            <result name="success">ComsumptionHistoryAction.jsp</result>  
+        </action>
+        <action name="RechargeRecordAction" class="com.yueguang.actions.RechargeRecordAction">
+            <result name="success">RechargeRecordAction.jsp</result>  
+        </action> 
+        <action name="DuesRecordAction" class="com.yueguang.actions.DuesRecordAction">
+            <result name="success">DuesRecordAction.jsp</result>  
+        </action> 
+        <action name="TicketRecordAction" class="com.yueguang.actions.TicketRecordAction">
+            <result name="success">TicketRecordAction.jsp</result>  
+        </action> 
+        <action name="ChangeMemberInfoAction" class="com.yueguang.actions.ChangeMemberInfoAction">
+            <result name="success">ChangeMemberInfoAction.jsp</result>
+          <result name="fail" type="stream">
+                 <param name="contentType">text/html;charset=utf8</param>
+                 <param name="inputName">inputStream</param>
+            </result>  
+        </action> 
+        <action name="DoChangeMemberInfo" class="com.yueguang.actions.DoChangeMemberInfo">
+            <result name="success" type="stream">
+                 <param name="contentType">text/html;charset=utf8</param>
+                 <param name="inputName">changeInfoMSG</param>
+            </result>  
+          <result name="fail" type="stream">
+                 <param name="contentType">text/html;charset=utf8</param>
+                 <param name="inputName">changeInfoMSG</param>
+            </result> 
+        </action>
+        <action name="MemberdoRechargeAction" class="com.yueguang.actions.MemberdoRechargeAction">
+            <result name="success">MemberdoRecharge.jsp</result>  
+            <result name="fail" type="stream">
+                 <param name="contentType">text/html;charset=utf8</param>
+                 <param name="inputName">inputStream</param>
+            </result> 
+        </action> 
+        <action name="DoMemberRecharge" class="com.yueguang.actions.MemberdoRechargeAction" method="doMemberRecharge">
+            <result name="success" type="stream">
+                 <param name="contentType">text/html;charset=utf8</param>
+                 <param name="inputName">inputStream</param>
+            </result>  
+          <result name="fail" type="stream">
+                 <param name="contentType">text/html;charset=utf8</param>
+                 <param name="inputName">inputStream</param>
+            </result> 
+        </action>
+        <action name="IntegralExchangeAction" class="com.yueguang.actions.IntegralExchangeAction">
+            <result name="success">IntegralExchange.jsp</result>  
+            <result name="fail" type="stream">
+                 <param name="contentType">text/html;charset=utf8</param>
+                 <param name="inputName">inputStream</param>
+            </result> 
+        </action> 
+        <action name="DoIntegralExchange" class="com.yueguang.actions.IntegralExchangeAction" method="doIntegralExchange">
+            <result name="success" type="stream">
+                 <param name="contentType">text/html;charset=utf8</param>
+                 <param name="inputName">inputStream</param>
+            </result>  
+          <result name="fail" type="stream">
+                 <param name="contentType">text/html;charset=utf8</param>
+                 <param name="inputName">inputStream</param>
+            </result> 
+        </action>
+         <action name="GetCancelMemberPage" class="com.yueguang.actions.MemberLevelAction"  method="getCancelMemberPage">
+            <result name="success">MemberCancelMember.jsp</result>  
+             <result name="fail" type="stream">
+                 <param name="contentType">text/html;charset=utf8</param>
+                 <param name="inputName">inputStream</param>
+            </result> 
+        </action> 
+        <action name="MemberCancelMember" class="com.yueguang.actions.MemberLevelAction" method="memberCancelMember">
+            <result name="success" type="stream">
+                 <param name="contentType">text/html;charset=utf8</param>
+                 <param name="inputName">inputStream</param>
+            </result>  
+          <result name="fail" type="stream">
+                 <param name="contentType">text/html;charset=utf8</param>
+                 <param name="inputName">inputStream</param>
+            </result> 
+        </action>
+        <action name="GetAvailableFilms" class="com.yueguang.actions.BuyTicketAction"  method="GetAvailableFilms">
+            <result name="success">AvailableFilms.jsp</result> 
+            <result name="fail" type="stream">
+                 <param name="contentType">text/html;charset=utf8</param>
+                 <param name="inputName">inputStream</param>
+            </result> 
+        </action> 
+        <action name="GetMemberBuyTicketsPage" class="com.yueguang.actions.BuyTicketAction"  method="GetMemberBuyTicketsPage">
+            <result name="success">MemberBuyTickets.jsp</result>  
+             <result name="fail" type="stream">
+                 <param name="contentType">text/html;charset=utf8</param>
+                 <param name="inputName">inputStream</param>
+            </result> 
+        </action> 
+        <action name="MemberGetPlanInfo" class="com.yueguang.actions.BuyTicketAction"  method="getPlanInfo">
+            <result name="success">MemberGetPlanInfo.jsp</result>  
+            <result name="fail" type="stream">
+                 <param name="contentType">text/html;charset=utf8</param>
+                 <param name="inputName">inputStream</param>
+            </result> 
+        </action> 
+        <action name="GetMemberSelectedTickets" class="com.yueguang.actions.BuyTicketAction"  method="getMemberSelectedTickets">
+            <result name="success">MemberSelectedTickets.jsp</result>  
+            <result name="fail" type="stream">
+                 <param name="contentType">text/html;charset=utf8</param>
+                 <param name="inputName">inputStream</param>
+            </result> 
+        </action> 
+        <action name="MemberBuySelectedTickets" class="com.yueguang.actions.BuyTicketAction"  method="memberBuySelectedTickets">
+            <result name="success">MemberBuySelectedTicketsResult.jsp</result>  
+            <result name="fail" type="stream">
+                 <param name="contentType">text/html;charset=utf8</param>
+                 <param name="inputName">inputStream</param>
+            </result> 
+        </action> 
+        <action name="GetAttendActivityPage" class="com.yueguang.actions.ActivityAction"  method="getAttendActivityPage">
+            <result name="success">AttendActivityPage.jsp</result>  
+            <result name="fail" type="stream">
+                 <param name="contentType">text/html;charset=utf8</param>
+                 <param name="inputName">inputStream</param>
+            </result> 
+        </action> 
+         <action name="GotoTicketwithActivityTargetPage" class="com.yueguang.actions.ActivityAction"  method="gotoTicketwithActivityTargetPage">
+            <result name="success">TicketwithActivityTargetPage.jsp</result>  
+            <result name="fail" type="stream">
+                 <param name="contentType">text/html;charset=utf8</param>
+                 <param name="inputName">inputStream</param>
+            </result> 
+        </action> 
+        <action name="GetQuestionByTicketid" class="com.yueguang.actions.ActivityAction"  method="getQuestionByTicketid">
+            <result name="success">MemberAnswerQuestion.jsp</result>  
+            <result name="fail" type="stream">
+                 <param name="contentType">text/html;charset=utf8</param>
+                 <param name="inputName">inputStream</param>
+            </result> 
+        </action> 
+         <action name="MemberSubbmitAnswers" class="com.yueguang.actions.ActivityAction"  method="memberSubbmitAnswers">
+            <result name="success" type="stream">
+                 <param name="contentType">text/html;charset=utf8</param>
+                 <param name="inputName">inputStream</param>
+            </result>  
+            <result name="fail" type="stream">
+                 <param name="contentType">text/html;charset=utf8</param>
+                 <param name="inputName">inputStream</param>
+            </result> 
+        </action> 
+        <action name="GetRegisterMemberPage" class="com.yueguang.actions.MemberAction"  method="getRegisterMemberPage">
+            <result name="success">MemberRegister.jsp</result>  
+            <result name="fail" type="stream">
+                 <param name="contentType">text/html;charset=utf8</param>
+                 <param name="inputName">inputStream</param>
+            </result> 
+        </action> 
+        <action name="RegisterMember" class="com.yueguang.actions.MemberAction"  method="registerMember">
+            <result name="success" type="stream">
+                 <param name="contentType">text/html;charset=utf8</param>
+                 <param name="inputName">inputStream</param>
+            </result>   
+            <result name="fail" type="stream">
+                 <param name="contentType">text/html;charset=utf8</param>
+                 <param name="inputName">inputStream</param>
+            </result> 
+        </action> 
+        <action name="GetSearchMemberInfoPage" class="com.yueguang.actions.MemberAction"  method="getSearchMemberInfoPage">
+            <result name="success">SearchMemberInfo.jsp</result>   
+            <result name="fail" type="stream">
+                 <param name="contentType">text/html;charset=utf8</param>
+                 <param name="inputName">inputStream</param>
+            </result> 
+        </action> 
+        <action name="GetStaffRechargeMemberPage" class="com.yueguang.actions.MemberdoRechargeAction"  method="getStaffRechargeMemberPage">
+            <result name="success"> StaffRechargeMember.jsp</result>   
+        </action> 
+        <action name="StaffRechargeMember" class="com.yueguang.actions.MemberdoRechargeAction"  method="staffRechargeMember">
+             <result name="success" type="stream">
+                 <param name="contentType">text/html;charset=utf8</param>
+                 <param name="inputName">inputStream</param>
+            </result>   
+            <result name="fail" type="stream">
+                 <param name="contentType">text/html;charset=utf8</param>
+                 <param name="inputName">inputStream</param>
+            </result>  
+        </action> 
+        <action name="GetChangeMemberLevelPage" class="com.yueguang.actions.MemberAction"  method="getChangeMemberLevelPage">
+            <result name="success"> ChangeMemberLevel.jsp</result>  
+        </action> 
+        <action name="ChangeMemberLevel" class="com.yueguang.actions.MemberAction"  method="changeMemberLevel">
+             <result name="success" type="stream">
+                 <param name="contentType">text/html;charset=utf8</param>
+                 <param name="inputName">inputStream</param>
+            </result>   
+            <result name="fail" type="stream">
+                 <param name="contentType">text/html;charset=utf8</param>
+                 <param name="inputName">inputStream</param>
+            </result>  
+        </action> 
+        <action name="GetRecoverMemberPage" class="com.yueguang.actions.MemberAction"  method="getRecoverMemberPage">
+            <result name="success"> RecoverMember.jsp</result>   
+        </action> 
+        <action name="RecoverMember" class="com.yueguang.actions.MemberAction"  method="recoverMember">
+             <result name="success" type="stream">
+                 <param name="contentType">text/html;charset=utf8</param>
+                 <param name="inputName">inputStream</param>
+            </result>   
+            <result name="fail" type="stream">
+                 <param name="contentType">text/html;charset=utf8</param>
+                 <param name="inputName">inputStream</param>
+            </result>  
+        </action> 
+         <action name="GetCreatePlanPage" class="com.yueguang.actions.PlanAction"  method="getCreatePlanPage">
+            <result name="success"> CreatePlan.jsp</result>   
+        </action> 
+        <action name="SubbmitPlan" class="com.yueguang.actions.PlanAction"  method="subbmitPlan">
+             <result name="success" type="stream">
+                 <param name="contentType">text/html;charset=utf8</param>
+                 <param name="inputName">inputStream</param>
+            </result>   
+            <result name="fail" type="stream">
+                 <param name="contentType">text/html;charset=utf8</param>
+                 <param name="inputName">inputStream</param>
+            </result>  
+        </action> 
+        <action name="GetTargetOnShelfFilm" class="com.yueguang.actions.FilmAction"  method="getTargetOnShelfFilmPage">
+            <result name="success">FilmRecord.jsp</result>  
+            <result name="fail" type="stream">
+                 <param name="contentType">text/html;charset=utf8</param>
+                 <param name="inputName">inputStream</param>
+            </result>   
+        </action>
+         <action name="GetDoFilmPlanPage" class="com.yueguang.actions.PlanAction"  method="getDoFilmPlanPage">
+            <result name="success">DofilmPlan.jsp</result>  
+            <result name="fail" type="stream">
+                 <param name="contentType">text/html;charset=utf8</param>
+                 <param name="inputName">inputStream</param>
+            </result>   
+        </action>
+        <action name="GetModifyPlanPage" class="com.yueguang.actions.PlanAction"  method="getModifyPlanPage">
+            <result name="success">ModifyPlan.jsp</result>  
+            <result name="fail" type="stream">
+                 <param name="contentType">text/html;charset=utf8</param>
+                 <param name="inputName">inputStream</param>
+            </result>   
+        </action>
+        <action name="GetTargetModifiablePlanPage" class="com.yueguang.actions.PlanAction"  method="getTargetModifiablePlanPage">
+            <result name="success">ModifiablePlan.jsp</result>  
+            <result name="fail" type="stream">
+                 <param name="contentType">text/html;charset=utf8</param>
+                 <param name="inputName">inputStream</param>
+            </result>   
+        </action>
+         <action name="ModifyPlan" class="com.yueguang.actions.PlanAction"  method="modifyPlan">
+             <result name="success" type="stream">
+                 <param name="contentType">text/html;charset=utf8</param>
+                 <param name="inputName">inputStream</param>
+            </result>   
+            <result name="fail" type="stream">
+                 <param name="contentType">text/html;charset=utf8</param>
+                 <param name="inputName">inputStream</param>
+            </result>  
+        </action> 
+         <action name="DeletePlan" class="com.yueguang.actions.PlanAction"  method="deletePlan">
+             <result name="success" type="stream">
+                 <param name="contentType">text/html;charset=utf8</param>
+                 <param name="inputName">inputStream</param>
+            </result>   
+            <result name="fail" type="stream">
+                 <param name="contentType">text/html;charset=utf8</param>
+                 <param name="inputName">inputStream</param>
+            </result>  
+        </action> 
+        <action name="GetModifyTargetPlanPage" class="com.yueguang.actions.PlanAction"  method="getModifyTargetPlanPage">
+             <result name="success">ModifyTargetPlan.jsp</result>   
+            <result name="fail" type="stream">
+                 <param name="contentType">text/html;charset=utf8</param>
+                 <param name="inputName">inputStream</param>
+            </result>  
+        </action> 
+	
+
+	   <action name="GetCreateActivityPage" class="com.yueguang.actions.ActivityAction"  method="getCreateActivityPage">
+             <result name="success">CreateActivity.jsp</result>   
+            <result name="fail" type="stream">
+                 <param name="contentType">text/html;charset=utf8</param>
+                 <param name="inputName">inputStream</param>
+            </result>  
+        </action> 
+        
+        <action name="GetCreateActivityForTargetFilmPage" class="com.yueguang.actions.ActivityAction"  method="getCreateActivityForTargetFilmPage">
+             <result name="success">CreateActivityForTargetFilm.jsp</result>   
+            <result name="fail" type="stream">
+                 <param name="contentType">text/html;charset=utf8</param>
+                 <param name="inputName">inputStream</param>
+            </result>  
+        </action> 
+         <action name="StaffCreateActivity" class="com.yueguang.actions.ActivityAction"  method="staffCreateActivity">
+            <result name="success" type="stream">
+                 <param name="contentType">text/html;charset=utf8</param>
+                 <param name="inputName">inputStream</param>
+            </result>
+            <result name="fail" type="stream">
+                 <param name="contentType">text/html;charset=utf8</param>
+                 <param name="inputName">inputStream</param>
+            </result>  
+        </action> 
+        <action name="GetTargetOnShelfFilmPageForActivity" class="com.yueguang.actions.FilmAction"  method="getTargetOnShelfFilmPageForActivity">
+            <result name="success">FilmRecordForCreateActivity.jsp</result>   
+        </action> 
+        
+        <action name="GetStaffBuyTicketPage" class="com.yueguang.actions.BuyTicketAction"  method="getStaffBuyTicketPage">
+             <result name="success">StaffBuyTicket.jsp</result>   
+            <result name="fail" type="stream">
+                 <param name="contentType">text/html;charset=utf8</param>
+                 <param name="inputName">inputStream</param>
+            </result>  
+        </action> 
+        <action name="PayByNotMember" class="com.yueguang.actions.BuyTicketAction"  method="payByNotMember">
+            <result name="success" type="stream">
+                 <param name="contentType">text/html;charset=utf8</param>
+                 <param name="inputName">inputStream</param>
+            </result>
+            <result name="fail" type="stream">
+                 <param name="contentType">text/html;charset=utf8</param>
+                 <param name="inputName">inputStream</param>
+            </result>  
+        </action> 
+        <action name="PayByMember" class="com.yueguang.actions.BuyTicketAction"  method="payByMember">
+            <result name="success" type="stream">
+                 <param name="contentType">text/html;charset=utf8</param>
+                 <param name="inputName">inputStream</param>
+            </result>
+            <result name="fail" type="stream">
+                 <param name="contentType">text/html;charset=utf8</param>
+                 <param name="inputName">inputStream</param>
+            </result>  
+        </action> 
+        <action name="GetStaffSelectedTickets" class="com.yueguang.actions.BuyTicketAction"  method="getStaffSelectedTickets">
+            <result name="success">StaffSelectedTickets.jsp</result>  
+            <result name="fail" type="stream">
+                 <param name="contentType">text/html;charset=utf8</param>
+                 <param name="inputName">inputStream</param>
+            </result> 
+        </action> 
+        <action name="GetVerifyPlanPage" class="com.yueguang.actions.PlanAction"  method="getVerifyPlanPage">
+            <result name="success">VerifyPlan.jsp</result>  
+            <result name="fail" type="stream">
+                 <param name="contentType">text/html;charset=utf8</param>
+                 <param name="inputName">inputStream</param>
+            </result> 
+        </action>
+        <action name="GetTargetVerifiablePlanPage" class="com.yueguang.actions.PlanAction"  method="getTargetVerifiablePlanPage">
+            <result name="success">TargetVerifiablePlanPage.jsp</result>  
+            <result name="fail" type="stream">
+                 <param name="contentType">text/html;charset=utf8</param>
+                 <param name="inputName">inputStream</param>
+            </result> 
+        </action>
+        <action name="SubbmitVerifyPlanResult" class="com.yueguang.actions.PlanAction"  method="subbmitVerifyPlanResult">
+            <result name="success" type="stream">
+                 <param name="contentType">text/html;charset=utf8</param>
+                 <param name="inputName">inputStream</param>
+            </result>   
+            <result name="fail" type="stream">
+                 <param name="contentType">text/html;charset=utf8</param>
+                 <param name="inputName">inputStream</param>
+            </result> 
+        </action>
+        <action name="GetHandleActivityPage" class="com.yueguang.actions.ActivityAction"  method="getHandleActivityPage">
+            <result name="success">HandleActivity.jsp</result>  
+            <result name="fail" type="stream">
+                 <param name="contentType">text/html;charset=utf8</param>
+                 <param name="inputName">inputStream</param>
+            </result> 
+        </action>
+         <action name="GetQuestionsofAFilmPage" class="com.yueguang.actions.ActivityAction"  method="getQuestionsofAFilmPage">
+            <result name="success">QuestionsofAFilm.jsp</result>  
+            <result name="fail" type="stream">
+                 <param name="contentType">text/html;charset=utf8</param>
+                 <param name="inputName">inputStream</param>
+            </result> 
+        </action>
+         <action name="GetStatisticofAQuestiononAFilm" class="com.yueguang.actions.ActivityAction"  method="getStatisticofAQuestiononAFilm">
+            <result name="success">StatisticofAQuestiononAFilm.jsp</result>  
+            <result name="fail" type="stream">
+                 <param name="contentType">text/html;charset=utf8</param>
+                 <param name="inputName">inputStream</param>
+            </result> 
+        </action>
+         <action name="HandleActivity" class="com.yueguang.actions.ActivityAction"  method="handleActivity">
+            <result name="success" type="stream">
+                 <param name="contentType">text/html;charset=utf8</param>
+                 <param name="inputName">inputStream</param>
+            </result>   
+            <result name="fail" type="stream">
+                 <param name="contentType">text/html;charset=utf8</param>
+                 <param name="inputName">inputStream</param>
+            </result> 
+        </action>
+        <action name="GetStatisticPage" class="com.yueguang.actions.StatisticAction"  method="getStatisticPage">
+            <result name="success">ManagerStatistic.jsp</result>  
+            <result name="fail" type="stream">
+                 <param name="contentType">text/html;charset=utf8</param>
+                 <param name="inputName">inputStream</param>
+            </result> 
+        </action>
+    </package>
+   
+    <package name="default" extends="struts-default">
+      <default-action-ref name="defaultAction"/>
+      <action name="defaultAction">
+        <result>/Login.jsp</result>
+      </action>
+    </package>  
+</struts>  
